@@ -1,3 +1,6 @@
+# Most Important
+```pip install pyinstaller``` // you need this to convert your .py file to .exe
+
 import os - default
 import time - default
 import smtplib - default

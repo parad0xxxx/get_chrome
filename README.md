@@ -1,11 +1,10 @@
 # ChromeHacking
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+ChromeHacking (chrome.py) reads and writes binary information found in Google Chrome's database to harvest saved passwords, and written those into a .txt format.
 
 # Who made this?
 * parad0x (front-end developer)
 * snavellet (back-end developer[APIs]) 
-
-ChromeHacking (chrome.py) reads and writes binary information found in Google Chrome's database to harvest saved passwords, and written those into a .txt format.
 
 # Some Cool Features
   - Write saved passwords into a .txt file

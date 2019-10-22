@@ -15,10 +15,10 @@ ChromeHacking (chrome.py) reads and writes binary information found in Google Ch
     • Added Windows(only) support. (More will be added as script progresses)
     • Removes all console recognition by user. (You can modify the script to your expertise)
     
-# Ideas
-    • Make chrome.py a library on pypi(pip)
-    • Make it fully user accessible
- 
 # Reminders
     • Remember to replace '' string to YOUR details. (this will prevent any runtime errors)
-    • If you would like to modify this software, please FORK it. :)
+    • If you would like to modify this software, please FORK it. :)    
+    
+# Ideas
+    • Make chrome.py a library on pypi(pip)
+    • Make it fully user accessible.

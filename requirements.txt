@@ -13,3 +13,5 @@ import socket - default
 import requests - pip install requests
 import sqlite3 - default library
 import win32crypt - pip install pywin32
+import sys
+import platform - pip(3) install platform

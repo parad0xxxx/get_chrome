@@ -30,7 +30,7 @@ old_app = ''
 # prints the OS system ie; Mac, Windows, Linux etc...
 OS = platform.system()
 # sees if the OS is windows, if so - continue. If not - exits.
-if (OS == "Mac"):
+if (OS == "Windows"):
 	print("Your OS is compatable! :)")
 	pass # Continues script
 else: # Exits the script with a message

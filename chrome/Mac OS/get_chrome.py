@@ -1,5 +1,5 @@
 ## madeby parad0x 20/10/19 8:48pm ##
-## FOR MAC OS ONLY!! ##
+## FOR MAC OS ONLY!! ## // minimal function //
 
 #imports
 import os

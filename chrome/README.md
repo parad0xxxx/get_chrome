@@ -4,8 +4,8 @@
 Operating systems besides Windows were not intended to function with this script, but we have progressively made commitments to achieve this.
 
 ## Installation
-* Either use pyinstaller to convert it into an .exe file. (example below)
-```pyinstaller scriptname.py --onefile```
+* Either use pyinstaller to convert it into an .exe file. (example) - 
+// ```pyinstaller scriptname.py --onefile```
 * // Or you can run it in python shell (or cmd/terminal)
 
 ## Contributing

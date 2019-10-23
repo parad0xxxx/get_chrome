@@ -1,3 +1,0 @@
-to convert .py file into an .exe
-please use the command below:
-pyinstaller yourscriptname.py --onefile #--icon=icon.ico //optional

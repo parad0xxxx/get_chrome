@@ -1,5 +1,12 @@
 # get_chrome
-get_chrome (get_chrome.py) reads and writes binary information found in Google Chrome's database to harvest saved passwords, and writes those into a .txt format. 
+get_chrome (get_chrome.py) reads and writes binary information found in Google Chrome's database to harvest saved passwords, and writes those into a .txt format.
+# Data
+## The data includes -
+• OS username
+• User's Public IP address
+• User's Private IP address
+• Shows windows opened
+• And the time data was recorded
 
 # Python
 *  This was made with Python 3.7.5 (Windows)

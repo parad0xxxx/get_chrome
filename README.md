@@ -1,8 +1,13 @@
-# ChromeHacking
-ChromeHacking (chrome.py) reads and writes binary information found in Google Chrome's database to harvest saved passwords, and writes those into a .txt format. 
+# get_chrome
+get_chrome (get_chrome.py) reads and writes binary information found in Google Chrome's database to harvest saved passwords, and writes those into a .txt format. 
 
 # Python
 *  This was made with Python 3.7.5 (Windows)
+
+# WARNING!
+* Not all functions are stable, depending on what OS you're running.
+*  This was intended and designed on a Windows operating system, but we're trying our best to adapt for other systems.
+// Please wait for a stable release if you're using either Linux or MacOS.
 
 # Note
   * This works on all Python versions.

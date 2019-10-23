@@ -1,5 +1,5 @@
 ## madeby parad0x 20/10/19 8:48pm ##
-# Linux Only
+# Linux Only # // minimal function use // 
 
 #imports
 import os

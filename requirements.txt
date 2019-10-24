@@ -1,17 +1,17 @@
 # Most Important
 ```pip install pyinstaller``` // you need this to convert your .py file to .exe
 
-import os - default
-import time - default
-import smtplib - default
-from email.mime.multipart import MIMEMultipart - default
-from email.mime.text import MIMEText - default
-from email.mime.base import MIMEBase - default
-from email import encoders - default
-import win32gui - pip install pywin32
-import socket - default
-import requests - pip install requests
-import sqlite3 - default library
-import win32crypt - pip install pywin32
+import os
+import time
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import win32gui
+import socket
+import requests
+import sqlite3
+import win32crypt (pip install pywin32)
 import sys
-import platform - pip(3) install platform
+import platform

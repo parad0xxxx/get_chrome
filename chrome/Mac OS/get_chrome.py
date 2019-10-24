@@ -9,11 +9,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import win32gui
+#import win32gui - only supports windows :( // we will update this with quartz //
 import socket
 import requests
 import sqlite3
-import win32crypt
+#import win32crypt - only supports windows :(
 import platform
 import sys
 

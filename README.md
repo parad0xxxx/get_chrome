@@ -37,6 +37,7 @@ get_chrome (get_chrome.py) reads and writes binary information found in Google C
     • Removes all console recognition by user. (You can modify the script to your expertise)
     • Added chrome directory solutions for all OS.
     • Added statements to read if your device is running the ideal version of get_chrome.py
+    • Removed 'noname' attachment bug with proper results.txt and added a guide on how to use it.
     
 # Reminders
     • Remember to replace '' string to YOUR details. (this will prevent any runtime errors)

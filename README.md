@@ -5,12 +5,12 @@ get_chrome (get_chrome.py) reads and writes binary information found in Google C
 ```https://github.com/parad0xxxx/get_chrome/releases```
 
 # Data
-• Chrome passwords
-• OS username
-• User's Public IP address
-• User's Private IP address
-• Shows windows opened
-• And the time data was recorded
+* Chrome passwords
+* OS username
+* User's Public IP address
+* User's Private IP address
+* Shows windows opened
+* And the time data was recorded
 
 # Python
 *  This was made with Python 3.7.5 (Windows)

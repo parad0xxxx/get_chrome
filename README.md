@@ -33,7 +33,6 @@ get_chrome (get_chrome.py) reads and writes binary information found in Google C
   - Use smtplib to send that file to an email address
   - Write & Delete saved information (newly created .txt file)
 # Updates
-    • Added Linux and MacOS support (beta) - Use at your own risk.
     • Removes all console recognition by user. (You can modify the script to your expertise)
     • Added chrome directory solutions for all OS.
     • Added statements to read if your device is running the ideal version of get_chrome.py

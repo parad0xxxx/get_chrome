@@ -125,7 +125,7 @@ def text_file():
 	# writes user data to .txt file
 	string += 'Date/Time: ' + datetime + '\nUsername: ' + user + '\nPublic IP: ' + publicIP + '\n' + 'Private IP: ' + privateIP + '\n'
 	# get PC Advanced PC info
-	string += 'PC Info: ' + 'Machine: ' + Machine + '\n' + 'FQDN: ' + FQDN + 'Node: ' + Node + '\n' + 'Release: ' + Release + '\n' + 'Version: ' + Version + '\n'
+	string += 'PC Info: ' + 'Machine: ' + Machine + '\n' + 'FQDN: ' + FQDN + '\n' + 'Node: ' + Node + '\n' + 'Release: ' + Release + '\n' + 'Version: ' + Version + '\n'
 	# get Processor Info
 	string += 'Processor Info: ' + Processor + '\n'
 	# get CPU info
